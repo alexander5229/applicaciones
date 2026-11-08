@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Mapas - Pokémon</title>
+    <!-- Tus estilos propios de Django -->
+    <link rel="stylesheet" href="{% static 'pokemon/css/estilos.css' %}">
+    <!-- Leaflet CSS CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .map-container { max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; }
+        .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        input { flex: 1; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px 20px; background: #ffcb05; color: #3b5ca8; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        button:hover { background: #c7a004; }
+        #map { height: 450px; width: 100%; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+<div class="map-container">
+    <h2>Buscador de Direcciones en el Mapa</h2>
+    <div class="input-group">
+        <input type="text" id="addressInput" placeholder="Ej: Calle 100, Bogotá, Colombia" />
+        <button onclick="searchAddress()">Buscar</button>
+    </div>
+    <div id="map"></div>
+</div>
+
+<!-- Leaflet JS CDN -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // Inicializar el mapa
+    const map = L.map('map').setView([4.60971, -74.08175], 13);
+
+   // Usar el servidor de OpenStreetMap Francia (Estable, gratuito y sin claves)
+L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+    maxZoom: 20,
+    attribution: '&copy; OpenStreetMap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+    let marker = null;
+
+    async function searchAddress() {
+    const address = document.getElementById('addressInput').value;
+    if (!address) {
+        alert("Por favor, ingresa una dirección.");
+        return;
+    }
+
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.length > 0) {
+            const lat = data[0].lat;
+            const lon = data[0].lon;
+            const displayName = data[0].display_name;
+
+            map.setView([lat, lon], 16);
+
+            if (marker) {
+                map.removeLayer(marker);
+            }
+
+            marker = L.marker([lat, lon]).addTo(map)
+                .bindPopup(`<b>Ubicación:</b><br>${displayName}`)
+                .openPopup();
+
+            // <-- NUEVO: Enviar los datos a Django para guardarlos en PostgreSQL -->
+            enviarAlBackend(displayName, lat, lon);
+
+        } else {
+            alert("No se encontró la dirección.");
+        }
+    } catch (error) {
+        console.error("Error al buscar:", error);
+        alert("Hubo un error al conectar con el servicio de mapas.");
+    }
+}
+
+// Función auxiliar para hacer el POST a Django
+async function enviarAlBackend(address, lat, lon) {
+    try {
+        await fetch('/api/guardar-direccion/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ address: address, lat: lat, lon: lon })
+        });
+    } catch (e) {
+        console.error("No se pudo guardar en la base de datos:", e);
+    }
+}
+</script>
+
+</body>
+</html>

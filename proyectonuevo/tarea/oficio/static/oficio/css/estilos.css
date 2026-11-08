@@ -1,0 +1,147 @@
+/* ==========================================
+   CONFIGURACIÓN GENERAL Y RESET
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f2fe; /* Azul claro más limpio (equivalente a lightblue) */
+    padding: 30px;
+    color: #333333;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   CONTENEDOR PRINCIPAL
+   ========================================== */
+.contenedor {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================
+   TÍTULOS
+   ========================================== */
+h1 {
+    text-align: center;
+    color: #1e3a8a; /* Azul institucional elegante */
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+/* ==========================================
+   TABLA DE DATOS
+   ========================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+th {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    padding: 14px 12px;
+    text-align: center;
+    font-weight: 600;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+    font-size: 14px;
+}
+
+tr:hover {
+    background-color: #f8fafc;
+}
+
+/* ==========================================
+   BOTONES Y ACCIONES
+   ========================================== */
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Botón Verde (Crear / Editar) */
+.btn-verde {
+    background-color: #16a34a !important;
+}
+
+.btn-verde:hover {
+    background-color: #15803d;
+}
+
+/* Botón Rojo (Eliminar) */
+.btn-rojo {
+    background-color: #dc2626;
+}
+
+.btn-rojo:hover {
+    background-color: #b91c1c;
+}
+
+/* Contenedor de acciones dentro de la tabla */
+.acciones {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+}
+
+/* ==========================================
+   FORMULARIOS (Por si usas esta hoja en otras vistas)
+   ========================================== */
+form p {
+    margin-bottom: 15px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ==========================================
+   UTILIDADES
+   ========================================== */
+.volver {
+    display: inline-block;
+    margin-top: 20px;
+}

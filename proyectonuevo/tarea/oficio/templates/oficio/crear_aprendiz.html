@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Aprendiz</title>
+   {% load static %}
+<link rel="stylesheet" href="{% static 'oficio/css/estilos.css' %}"> 
+</head>
+<body>
+
+   <div class="contenedor">
+
+    <h1>{{ titulo|default:"Registrar nuevo aprendiz" }}</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ formulario.as_p }}
+
+        <button type="submit" class="btn btn-verde">
+            Guardar aprendiz
+        </button>
+
+        <a href="{% url 'lista_aprendices' %}" class="btn btn-rojo">
+            Cancelar
+        </a>
+    </form>
+
+</div>
+
+    <br>
+
+    <a href="{% url 'lista_aprendices' %}">
+        Volver al listado
+    </a>
+
+</body>
+</html>

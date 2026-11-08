@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Aprendices</title>
+    <link rel="stylesheet" href="{% static 'oficio/css/estilos.css' %}">
+</head>
+<body>
+
+<div class="contenedor">
+    <h1>Listado de Aprendices</h1>
+
+    <a href="{% url 'crear_aprendiz' %}" class="btn btn-verde">
+        + Nuevo aprendiz
+    </a>
+
+    <form method="GET" action="" class="search-form">
+            <input type="text" name="q" value="{{ query }}" placeholder="Buscar por nombre, apellido o documento..." />
+            <button type="submit" class="btn btn-verde">Buscar</button>
+            {% if query %}
+                <a href="{% url 'lista_aprendices' %}" class="btn-limpiar">Limpiar</a>
+            {% endif %}
+        </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Documento</th>
+                <th>Tipo documento</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Ficha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aprendiz in aprendices %}
+            <tr>
+                <td>{{ aprendiz.nombre }}</td>
+                <td>{{ aprendiz.apellido }}</td>
+                <td>{{ aprendiz.documento }}</td>
+                <td>{{ aprendiz.tipo_documento }}</td>
+                <td>{{ aprendiz.correo }}</td>
+                <td>{{ aprendiz.telefono }}</td>
+                <td>{{ aprendiz.ficha }}</td>
+                <td>
+                    <div class="acciones">
+                        <a href="{% url 'editar_aprendiz' aprendiz.id %}" class="btn btn-verde">Editar</a>
+                        <a href="{% url 'eliminar_aprendiz' aprendiz.id %}" class="btn btn-rojo">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No hay aprendices registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
