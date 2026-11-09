@@ -1,0 +1,112 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f1f4f8;
+    color: #263445;
+}
+
+/* Encabezado */
+header {
+    background-color: #17365d;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 30px;
+}
+
+header p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Menú de navegación */
+nav {
+    background-color: #245780;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Contenido principal */
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+main > h2,
+main > p {
+    text-align: center;
+}
+
+/* Secciones */
+section {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border-left: 5px solid #245780;
+}
+
+section h2 {
+    color: #17365d;
+}
+
+/* Enlaces de acción */
+section a {
+    display: inline-block;
+    background-color: #245780;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+section a:hover {
+    background-color: #17365d;
+}
+
+/* Lista de estaciones */
+ul {
+    line-height: 1.8;
+}
+
+/* Pie de página */
+footer {
+    background-color: #17365d;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 7px;
+    }
+
+    main {
+        padding: 0 12px;
+    }
+}

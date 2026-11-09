@@ -1,0 +1,14 @@
+{% extends 'tren/base.html' %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm text-center">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold text-primary">Sistema de Gestión Ferroviaria</h1>
+        <p class="col-md-8 fs-4 mx-auto text-muted">Administra de manera eficiente los trenes, estaciones, destinos y viajeros de la red.</p>
+        <div class="mt-4">
+            <a href="{% url 'listar_viajero' %}" class="btn btn-primary btn-lg me-2">Ver Viajeros</a>
+            <a href="{% url 'listar_maquina' %}" class="btn btn-outline-secondary btn-lg">Ver Trenes / Máquinas</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
