@@ -1,0 +1,125 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ProPok | Inicio</title>
+
+    <link rel="stylesheet" href="{% static 'pokemon/css/estilos.css' %}">
+</head>
+
+<body>
+
+    <header class="encabezado">
+
+        <h1>⚡ ProPok</h1>
+
+        <p>¡Bienvenido al mundo Pokémon!</p>
+
+    </header>
+
+    <main class="contenedor">
+
+        <h2>Panel principal</h2>
+
+        <p class="introduccion">
+            Administra tus entrenadores, Pokémon y gimnasios
+            desde una sola plataforma.
+        </p>
+
+        <section class="tarjetas">
+
+            <article class="tarjeta">
+
+                <div class="icono">🧑‍🏫</div>
+
+                <h3>Entrenadores</h3>
+
+                <p>
+                    Registra, consulta, actualiza y administra
+                    la información de tus entrenadores.
+                </p>
+
+                <a href="{% url 'listar_entrenadores' %}">
+                    Ingresar
+                </a>
+
+            </article>
+
+
+            <article class="tarjeta">
+
+                <div class="icono">⚡</div>
+
+                <h3>Pokémon</h3>
+
+                <p>
+                    Administra tus Pokémon, sus habilidades,
+                    naturalezas, fotografías y entrenadores.
+                </p>
+
+                <a href="{% url 'listar_pokemones' %}">
+                    Ingresar
+                </a>
+
+            </article>
+
+
+            <article class="tarjeta">
+
+                <div class="icono">🏟️</div>
+
+                <h3>Gimnasios</h3>
+
+                <p>
+                    Gestiona los líderes, elementos,
+                    medallas e imágenes de los gimnasios.
+                </p>
+
+                <a href="{% url 'listar_gimnasios' %}">
+                    Ingresar
+                </a>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <p>ProPok © 2026 - Sistema de administración Pokémon</p>
+
+    </footer>
+
+
+  <audio id="musica-propok" loop>
+    <source src="{% static 'pokemon/audio/propok_melodia_aventura.wav' %}" type="audio/wav">
+</audio>
+
+<button id="control-musica" class="boton">
+    🔊 Activar música
+</button>
+
+<script>
+    const musica = document.getElementById("musica-propok");
+    const botonMusica = document.getElementById("control-musica");
+
+    botonMusica.addEventListener("click", function() {
+        if (musica.paused) {
+            musica.play();
+            botonMusica.textContent = "🔇 Silenciar música";
+        } else {
+            musica.pause();
+            botonMusica.textContent = "🔊 Activar música";
+        }
+    });
+</script>  
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+```html
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pokémon | ProPok</title>
+
+    <link rel="stylesheet" href="{% static 'pokemon/css/estilos.css' %}">
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <h1>ProPok</h1>
+        <p>Registro de Pokémon</p>
+    </header>
+
+    <main class="contenedor">
+
+        {% if pokemon %}
+            <h2>Editar Pokémon</h2>
+        {% else %}
+            <h2>Registrar nuevo Pokémon</h2>
+        {% endif %}
+
+        <p class="introduccion">
+            Completa los datos para registrar o actualizar un Pokémon.
+        </p>
+
+        <form method="POST" enctype="multipart/form-data" class="formulario">
+
+            {% csrf_token %}
+
+            {{ formulario.as_p }}
+
+            <button type="submit" class="boton">
+                {% if pokemon %}
+                    Actualizar Pokémon
+                {% else %}
+                    Guardar Pokémon
+                {% endif %}
+            </button>
+
+            <a href="{% url 'listar_pokemones' %}"
+               class="boton boton-secundario">
+                Cancelar
+            </a>
+
+        </form>
+
+    </main>
+
+    <footer>
+        <p>ProPok © 2026 - Sistema de administración Pokémon</p>
+    </footer>
+
+</body>
+</html>
+```

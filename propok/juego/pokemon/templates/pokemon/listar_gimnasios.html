@@ -1,0 +1,119 @@
+```html
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gimnasios | ProPok</title>
+
+    <link rel="stylesheet" href="{% static 'pokemon/css/estilos.css' %}">
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <h1>ProPok</h1>
+        <p>Administración de gimnasios Pokémon</p>
+    </header>
+
+    <main class="contenedor">
+
+        <h2>Listado de Gimnasios</h2>
+
+        <p class="introduccion">
+            Consulta y administra los gimnasios Pokémon registrados.
+        </p>
+
+        <a href="{% url 'crear_gimnasio' %}" class="boton">
+            + Registrar nuevo gimnasio
+        </a>
+
+        <!--BUSQUEDA NUEVA-->
+        <form method="GET" action="" class="search-form">
+            <input type="text" name="q" value="{{ query }}" placeholder="Buscar por lider,elemento o medallas..." />
+            <button type="submit" class="boton">Buscar</button>
+            {% if query %}
+                <a href="{% url 'listar_gimnasios' %}" class="btn-limpiar">Limpiar</a>
+            {% endif %}
+        </form>
+
+        <div class="tarjetas">
+
+            {% for gimnasio in gimnasios %}
+
+                <div class="tarjeta">
+
+                    <div class="icono">🏟️</div>
+
+                    <h3>{{ gimnasio.lider_gim }}</h3>
+
+                    <p>
+                        <strong>Elemento:</strong>
+                        {{ gimnasio.elemento_gim }}
+                    </p>
+
+                    <p>
+                        <strong>Medallas:</strong>
+                        {{ gimnasio.medallas }}
+                    </p>
+
+                    <h3>Imagen del gimnasio</h3>
+
+                    {% if gimnasio.imagen_gim %}
+                        <img src="{{ gimnasio.imagen_gim.url }}"
+                             class="imagen-registro"
+                             alt="Imagen del gimnasio">
+                    {% else %}
+                        <p>Sin imagen del gimnasio.</p>
+                    {% endif %}
+
+                    <h3>Imagen del estadio</h3>
+
+                    {% if gimnasio.imagen_estadio %}
+                        <img src="{{ gimnasio.imagen_estadio.url }}"
+                             class="imagen-registro"
+                             alt="Imagen del estadio">
+                    {% else %}
+                        <p>Sin imagen del estadio.</p>
+                    {% endif %}
+
+                    <br>
+
+                    <a href="{% url 'editar_gimnasio' gimnasio.id %}">
+                        Editar
+                    </a>
+
+                    <a href="{% url 'eliminar_gimnasio' gimnasio.id %}"
+                       class="boton-eliminar">
+                        Eliminar
+                    </a>
+
+                </div>
+
+            {% empty %}
+
+                <p>No hay gimnasios registrados.</p>
+
+            {% endfor %}
+
+        </div>
+
+        <br>
+
+        <a href="{% url 'inicio' %}" class="boton boton-secundario">
+            Volver al inicio
+        </a>
+
+    </main>
+
+    <footer>
+        <p>ProPok © 2026 - Sistema de administración Pokémon</p>
+    </footer>
+
+</body>
+</html>
+```

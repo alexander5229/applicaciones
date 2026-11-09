@@ -1,0 +1,103 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entrenadores | ProPok</title>
+
+    <link rel="stylesheet" href="{% static 'pokemon/css/estilos.css' %}">
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <h1>ProPok</h1>
+        <p>Administración de entrenadores Pokémon</p>
+    </header>
+
+    <main class="contenedor">
+
+        <h2>Listado de Entrenadores</h2>
+
+        <p class="introduccion">
+            Consulta y administra los entrenadores registrados.
+        </p>
+
+        <a href="{% url 'crear_entrenador' %}" class="boton">
+            + Registrar entrenador
+        </a>
+
+        <!--BUSQUEDA NUEVA-->
+        <form method="GET" action="" class="search-form">
+            <input type="text" name="q" value="{{ query }}" placeholder="Buscar por nombre, apellido o documento..." />
+            <button type="submit" class="boton">Buscar</button>
+            {% if query %}
+                <a href="{% url 'listar_entrenadores' %}" class="btn-limpiar">Limpiar</a>
+            {% endif %}
+        </form>
+
+
+        <div class="tarjetas">
+
+            {% for entrenador in entrenadores %}
+
+                <div class="tarjeta">
+
+                    <div class="icono">
+                        {% if entrenador.imagen %}
+                            <img src="{{ entrenador.imagen.url }}"
+                                 class="imagen-registro"
+                                 alt="Imagen de {{ entrenador.nombre }}">
+                        {% else %}
+                            👤
+                        {% endif %}
+                    </div>
+
+                    <h3>
+                        {{ entrenador.nombre }}
+                        {{ entrenador.apellido }}
+                    </h3>
+
+                    <p>
+                        <strong>Documento:</strong>
+                        {{ entrenador.documento }}
+                    </p>
+
+                    <a href="{% url 'editar_entrenador' entrenador.id %}">
+                        Editar
+                    </a>
+
+                    <a href="{% url 'eliminar_entrenador' entrenador.id %}"
+                       class="boton-eliminar">
+                        Eliminar
+                    </a>
+
+                </div>
+
+            {% empty %}
+
+                <p>No hay entrenadores registrados.</p>
+
+            {% endfor %}
+
+        </div>
+
+        <br>
+
+        <a href="{% url 'inicio' %}" class="boton boton-secundario">
+            Volver al inicio
+        </a>
+
+    </main>
+
+    <footer>
+        <p>ProPok © 2026 - Sistema de administración Pokémon</p>
+    </footer>
+
+</body>
+</html>

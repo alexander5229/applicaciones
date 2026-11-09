@@ -1,0 +1,131 @@
+```html
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pokémon | ProPok</title>
+
+    <link rel="stylesheet" href="{% static 'pokemon/css/estilos.css' %}">
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <h1>ProPok</h1>
+        <p>Administración de Pokémon</p>
+    </header>
+
+    <main class="contenedor">
+
+        <h2>Listado de Pokémon</h2>
+
+        <p class="introduccion">
+            Consulta y administra los Pokémon registrados.
+        </p>
+
+        <a href="{% url 'crear_pokemon' %}" class="boton">
+            + Registrar nuevo Pokémon
+        </a>
+
+         <!--BUSQUEDA NUEVA-->
+        <form method="GET" action="" class="search-form">
+            <input type="text" name="q" value="{{ query }}" placeholder="Buscar por nombre..." />
+            <button type="submit" class="boton">Buscar</button>
+            {% if query %}
+                <a href="{% url 'listar_pokemones' %}" class="btn-limpiar">Limpiar</a>
+            {% endif %}
+        </form>
+
+        <div class="tarjetas">
+
+            {% for pokemon in pokemones %}
+
+                <div class="tarjeta">
+
+                    <div class="icono">
+
+                        {% if pokemon.imagen %}
+
+                            <img src="{{ pokemon.imagen.url }}"
+                                 class="imagen-registro"
+                                 alt="Imagen de {{ pokemon.nombre }}">
+
+                        {% else %}
+
+                            ⚡
+
+                        {% endif %}
+
+                    </div>
+
+                    <h3>{{ pokemon.nombre }}</h3>
+
+                    <p>
+                        <strong>Peso:</strong>
+                        {{ pokemon.peso }}
+                    </p>
+
+                    <p>
+                        <strong>Habilidades:</strong>
+                        {{ pokemon.habilidades }}
+                    </p>
+
+                    <p>
+                        <strong>Naturaleza:</strong>
+                        {{ pokemon.naturaleza }}
+                    </p>
+
+                    <p>
+                        <strong>Descripción:</strong>
+                        {{ pokemon.descripcion }}
+                    </p>
+
+                    <p>
+                        <strong>Fecha de captura:</strong>
+                        {{ pokemon.fecha_captura }}
+                    </p>
+
+                    <p>
+                        <strong>Entrenador:</strong>
+                        {{ pokemon.entrenador_pokemon|default:"Sin entrenador" }}
+                    </p>
+
+                    <a href="{% url 'editar_pokemon' pokemon.id %}">
+                        Editar
+                    </a>
+
+                    <a href="{% url 'eliminar_pokemon' pokemon.id %}"
+                       class="boton-eliminar">
+                        Eliminar
+                    </a>
+
+                </div>
+
+            {% empty %}
+
+                <p>No hay Pokémon registrados.</p>
+
+            {% endfor %}
+
+        </div>
+
+        <br>
+
+        <a href="{% url 'inicio' %}" class="boton boton-secundario">
+            Volver al inicio
+        </a>
+
+    </main>
+
+    <footer>
+        <p>ProPok © 2026 - Sistema de administración Pokémon</p>
+    </footer>
+
+</body>
+</html>
+```

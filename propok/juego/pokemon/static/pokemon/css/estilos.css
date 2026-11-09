@@ -1,0 +1,293 @@
+
+/* Configuracion general */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f4f8;
+    color: #333;
+}
+
+
+/* Encabezado */
+
+.encabezado {
+    background: linear-gradient(135deg, #e63946, #b5172b);
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.encabezado h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.encabezado p {
+    font-size: 18px;
+}
+
+
+/* Contenedor principal */
+
+.contenedor {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.contenedor h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.introduccion {
+    color: #666;
+    margin-bottom: 35px;
+}
+
+
+/* Tarjetas */
+
+.tarjetas {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.tarjeta {
+    background-color: white;
+    width: 300px;
+    padding: 30px 22px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    transition: transform 0.3s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-8px);
+}
+
+.icono {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.tarjeta h3 {
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+
+.tarjeta p {
+    color: #666;
+    line-height: 1.6;
+    min-height: 75px;
+    margin-bottom: 25px;
+}
+
+
+/* Botones */
+
+.tarjeta a {
+    display: inline-block;
+    background-color: #e63946;
+    color: white;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.tarjeta a:hover {
+    background-color: #b5172b;
+}
+
+
+/* Pie de pagina */
+
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+
+/* Adaptacion para celulares */
+
+@media (max-width: 600px) {
+
+    .encabezado h1 {
+        font-size: 32px;
+    }
+
+    .contenedor {
+        margin: 20px auto;
+    }
+
+    .tarjeta {
+        width: 100%;
+    }
+
+}
+
+
+/* ============================= */
+/* FORMULARIOS */
+/* ============================= */
+
+.formulario {
+    background-color: white;
+    max-width: 650px;
+    margin: 35px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    text-align: left;
+}
+
+.formulario p {
+    margin-bottom: 18px;
+}
+
+.formulario label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.formulario input:focus,
+.formulario select:focus,
+.formulario textarea:focus {
+    outline: none;
+    border-color: #e63946;
+    box-shadow: 0 0 4px rgba(230, 57, 70, 0.4);
+}
+
+
+/* ============================= */
+/* BOTONES GENERALES */
+/* ============================= */
+
+.boton {
+    display: inline-block;
+    background-color: #e63946;
+    color: white;
+    text-decoration: none;
+    padding: 11px 22px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.boton:hover {
+    background-color: #b5172b;
+}
+
+.boton-secundario {
+    background-color: #555;
+}
+
+.boton-secundario:hover {
+    background-color: #333;
+}
+
+.boton-eliminar {
+    background-color: #b5172b;
+}
+
+.boton-eliminar:hover {
+    background-color: #850d1c;
+}
+
+
+/* ============================= */
+/* LISTADOS */
+/* ============================= */
+
+.tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 25px;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.tabla th {
+    background-color: #e63946;
+    color: white;
+    padding: 14px;
+    text-align: center;
+}
+
+.tabla td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.tabla tr:hover {
+    background-color: #fcebed;
+}
+
+
+/* ============================= */
+/* IMAGENES DE REGISTROS */
+/* ============================= */
+
+.imagen-registro {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
+/* ============================= */
+/* ADAPTACION RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+    .formulario {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+
+    .tabla th,
+    .tabla td {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .boton {
+        padding: 9px 14px;
+        font-size: 13px;
+    }
+}
+

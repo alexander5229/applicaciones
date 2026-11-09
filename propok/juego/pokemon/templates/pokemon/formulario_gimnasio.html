@@ -1,0 +1,64 @@
+```html
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gimnasios | ProPok</title>
+
+    <link rel="stylesheet" href="{% static 'pokemon/css/estilos.css' %}">
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <h1>ProPok</h1>
+        <p>Registro de gimnasios Pokémon</p>
+    </header>
+
+    <main class="contenedor">
+
+        {% if gimnasio %}
+            <h2>Editar gimnasio</h2>
+        {% else %}
+            <h2>Registrar nuevo gimnasio</h2>
+        {% endif %}
+
+        <p class="introduccion">
+            Completa los siguientes datos del gimnasio Pokémon.
+        </p>
+
+        <form method="POST" enctype="multipart/form-data" class="formulario">
+
+            {% csrf_token %}
+
+            {{ formulario.as_p }}
+
+            <button type="submit" class="boton">
+                {% if gimnasio %}
+                    Actualizar gimnasio
+                {% else %}
+                    Guardar gimnasio
+                {% endif %}
+            </button>
+
+            <a href="{% url 'listar_gimnasios' %}"
+               class="boton boton-secundario">
+                Cancelar
+            </a>
+
+        </form>
+
+    </main>
+
+    <footer>
+        <p>ProPok © 2026 - Sistema de administración Pokémon</p>
+    </footer>
+
+</body>
+</html>
+```

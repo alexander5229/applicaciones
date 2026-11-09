@@ -1,0 +1,62 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar direcciones - Propok</title>
+</head>
+
+<body>
+
+    <h1>Buscar direcciones con TomTom</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Ingrese una dirección:</label>
+
+        <input
+            type="text"
+            name="direccion"
+            placeholder="Ejemplo: Calle 13, Bogotá"
+            required
+        >
+
+        <button type="submit">
+            Buscar dirección
+        </button>
+    </form>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    {% if resultados %}
+        <h2>Resultados encontrados</h2>
+
+        {% for resultado in resultados %}
+
+            <hr>
+
+            <p>
+                <strong>Dirección:</strong>
+                {{ resultado.direccion }}
+            </p>
+
+            <p>
+                <strong>Latitud:</strong>
+                {{ resultado.latitud }}
+            </p>
+
+            <p>
+                <strong>Longitud:</strong>
+                {{ resultado.longitud }}
+            </p>
+
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>
